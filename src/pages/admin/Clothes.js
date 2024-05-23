@@ -7,6 +7,7 @@ import Swal from 'sweetalert2'
 import { allUsers } from "../../store/slices/UsersSlice";
 import { products } from "../../store/slices/ProductsSlice";
 import { deleteProduct, editProduct } from "../../store/slices/ProductsSlice";
+import AddToClothes from "../../components/AddToClothes";
 
 
 function Clothes() {
@@ -40,7 +41,7 @@ function Clothes() {
             <div className='page-wrapper__box'>
                 <div className='inputWrapper'>
                     <input type="button" className='saveBtn' value='Add' onClick={() => {
-                        navigate('/admin/addtoclothes')
+                        <AddToClothes />
                     }} />
                     <div className='addItem-holder part'>
                         <div className='addProduct-col'>
@@ -70,8 +71,9 @@ function Clothes() {
                                             dispatch(editProduct({
                                                 id: product.id
                                             }))
-                                            navigate('/admin/addtoclothes')
-                                        }} />
+                                            // <AddToClothes />
+                                        }
+                                        } />
                                     </td>
                                     <td>
                                         <RiDeleteBin6Line className="productFormIcon tableDelete" onClick={() => {

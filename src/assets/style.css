@@ -1901,6 +1901,10 @@ input[type=number] {
     align-items: center;
 }
 
+.item:hover {
+    color: #0db4ac;
+}
+
 .menu-link {
     color: #FFFFFF;
     text-decoration: none;
@@ -1910,10 +1914,6 @@ input[type=number] {
 
 .menu-link span {
     font-size: 16px;
-}
-
-.item:hover {
-    color: #0db4ac;
 }
 
 .item:first-child {
@@ -2419,7 +2419,7 @@ input[type=number] {
     background-color: red;
 }
 
-.addProduct-col .dd{
+.addProduct-col .dd {
     font-size: 12px;
     margin-left: 5px;
 }
@@ -2446,7 +2446,7 @@ input[type=number] {
     border: none;
 }
 
-.dash-wrapper{
+.dash-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -2464,7 +2464,7 @@ input[type=number] {
     margin-right: 1.5rem;
 }
 
-.dash-col{
+.dash-col {
     display: flex;
     flex-direction: column;
     background-color: #ffffff;
@@ -2475,7 +2475,7 @@ input[type=number] {
     flex-basis: 30%;
 }
 
-.lineChart{
+.lineChart {
     box-sizing: border-box;
     display: flex;
     justify-content: center;
@@ -2484,9 +2484,8 @@ input[type=number] {
     width: 50%;
 }
 
-.lineChart-wrapper{
+.lineChart-wrapper {
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
-

@@ -1,23 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { LuLayoutDashboard } from "react-icons/lu";
-import { MdOutlineManageAccounts } from "react-icons/md";
-import { IoIosApps } from "react-icons/io";
-import { IoApps } from "react-icons/io5";
-import { FaElementor } from "react-icons/fa6";
-import { FaTableColumns } from "react-icons/fa6";
-import { LuComponent } from "react-icons/lu";
 import { IoSearch } from "react-icons/io5";
 import { FaRegEnvelope } from "react-icons/fa6";
 import { FaRegBell } from "react-icons/fa";
 import { GiClothes } from "react-icons/gi";
 import { FaUsers } from "react-icons/fa6";
 import "../../assets/style.css"
-
+import { allMenus } from "../../store/slices/MenuSlice";
+import { allGroups } from "../../store/slices/MenuSlice";
+import { useSelector } from "react-redux";
+import { loggedUser } from "../../store/slices/UsersSlice";
 
 
 function Admin() {
 
+    const menus = useSelector(allMenus)
+    const groups = useSelector(allGroups)
+    const loginUser = useSelector(loggedUser)
+    const [newMenu, setNewMenu] = useState([])
+
+    useEffect(() => {
+
+        let filteredGroup = groups.filter((group) => loginUser.groups.includes(group.name)).map((g) => g.menus).flat()
+        let newGroup = [...new Set(filteredGroup)];
+        setNewMenu(newGroup)
+
+    }, [menus, loginUser])
 
     return (
         <>
@@ -50,78 +59,18 @@ function Admin() {
                 <div className="left-context">
                     <div className="menu">
                         <ul className="items">
-                            <Link to='/admin/dashboard' className='menu-link'   >
-                                <li className="item">
-                                    <div className="icon-menu">
-                                        <LuLayoutDashboard />
-                                    </div>
-                                    <span>Dashboard</span>
-                                </li>
-                            </Link>
-                            <Link to='/admin/management' className='menu-link'>
-                                <li className="item">
-                                    <div className="icon-menu">
-                                        <MdOutlineManageAccounts />
-                                    </div>
-                                    <span>Management</span>
-                                </li>
-                            </Link>
-                            <Link to='/admin/pages' className='menu-link'>
-                                <li className="item">
-                                    <div className="icon-menu">
-                                        <IoIosApps />
-                                    </div>
-                                    <span>Pages</span>
-                                </li>
-                            </Link>
-                            <Link to='/admin/applications' className='menu-link'>
-                                <li className="item">
-                                    <div className="icon-menu">
-                                        <IoApps />
-                                    </div>
-                                    <span>Applications</span>
-                                </li>
-                            </Link>
-                            <Link to='/admin/elements' className='menu-link'>
-                                <li className="item">
-                                    <div className="icon-menu">
-                                        <FaElementor />
-                                    </div>
-                                    <span>Elements</span>
-                                </li>
-                            </Link>
-                            <Link to='/admin/forms' className='menu-link'>
-                                <li className="item">
-                                    <div className="icon-menu">
-                                        <FaTableColumns />
-                                    </div>
-                                    <span>Forms</span>
-                                </li>
-                            </Link>
-                            <Link to='/admin/components' className='menu-link'>
-                                <li className="item">
-                                    <div className="icon-menu">
-                                        <LuComponent />
-                                    </div>
-                                    <span>Components</span>
-                                </li>
-                            </Link>
-                            <Link to='/admin/clothes' className='menu-link'>
-                                <li className="item">
-                                    <div className="icon-menu">
-                                        <GiClothes />
-                                    </div>
-                                    <span>Clothes</span>
-                                </li>
-                            </Link>
-                            <Link to='/admin/users' className='menu-link'>
-                                <li className="item">
-                                    <div className="icon-menu">
-                                        <FaUsers />
-                                    </div>
-                                    <span>Users</span>
-                                </li>
-                            </Link>
+                            {
+                                newMenu.map((item) => {
+                                    const filteredMenu = menus.find(menu => menu.name == item);
+                                    if (filteredMenu) {
+                                        return (
+                                            <Link to={filteredMenu.path} className='menu-link item'>
+                                                <span>{filteredMenu.name}</span>
+                                            </Link>
+                                        )
+                                    }
+                                })
+                            }
                         </ul>
                     </div>
                 </div>

@@ -1,13 +1,11 @@
 import React from "react";
 
-function Elements() {
+function Cart() {
 
     return (
         <>
-
-
         </>
     )
 }
 
-export default Elements;
+export default Cart;

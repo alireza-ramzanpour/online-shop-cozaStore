@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
-import { allUsers, addUser } from "../../store/slices/UsersSlice";
+import { allUsers, addUser } from "../store/slices/UsersSlice";
 
 function AddUser() {
 

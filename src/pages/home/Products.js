@@ -1,15 +1,16 @@
-import { FaHeart, FaRegHeart } from 'react-icons/fa'
-import { Link } from 'react-router-dom';
 import { products } from '../../store/slices/ProductsSlice';
 import { useSelector } from 'react-redux';
 import { useEffect, useState, useRef } from 'react';
 import ReactStars from 'react-rating-star-with-type'
+import SingleProduct from '../../components/SingleProduct';
+import { Link } from 'react-router-dom';
+import { FaHeart, FaRegHeart } from 'react-icons/fa'
 import { FaStar } from "react-icons/fa";
 
 
 function Products() {
 
-    const kalas = useSelector(products)
+    const goods = useSelector(products)
     const [allColors, setAllColors] = useState([])
     const [allCategories, setAllCategories] = useState([])
     const [prices, setPrices] = useState([])
@@ -19,7 +20,7 @@ function Products() {
     const rdbRate = useRef()
     const rdbSrc = useRef()
     const btnCategories = useRef()
-    const [selectedProducts, setSelectedProducts] = useState(kalas)
+    const [selectedProducts, setSelectedProducts] = useState(goods)
     const [selectedMinPrice, setSelectedMinPrice] = useState('all')
     const [selectedMaxPrice, setSelectedMaxPrice] = useState('all')
     const [selectedCategory, setSelectedCategory] = useState('all')
@@ -33,19 +34,19 @@ function Products() {
     }
 
     useEffect(() => {
-        let cols = kalas.map((kala) => allColors.push(kala.informations.colors))
+        let cols = goods.map((good) => allColors.push(good.informations.colors))
         let rangs = allColors.flat()
         let s = new Set(rangs)
         cols = Array.from(s)
         setAllColors(cols)
 
         let das = allCategories.flat()
-        let cats = kalas.map((kala) => allCategories.push(kala.categories))
+        let cats = goods.map((good) => allCategories.push(good.categories))
         let c = new Set(das)
         cats = Array.from(c)
         setAllCategories(cats)
 
-        let prcs = kalas.map((kala) => prices.push(kala.price))
+        let prcs = goods.map((good) => prices.push(good.price))
         let gheymats = prices.flat()
         let fi = new Set(gheymats)
         prcs = Array.from(fi)
@@ -59,18 +60,18 @@ function Products() {
 
     useEffect(() => {
 
-        const filteredProduct = kalas.filter((kala) => {
-            return (selectedMinPrice == 'all' && selectedMaxPrice == 'all') || (kala.price >= selectedMinPrice && kala.price < selectedMaxPrice)
-        }).filter((kala) => {
-            return selectedCategory == 'all' || (kala.categories.includes(selectedCategory))
-        }).filter((kala) => {
-            return selectedColors.length == 0 || kala.informations.colors.some((color) => selectedColors.includes(color))
-        }).filter((kala) => {
-            let avgRate = kala.reviews.map((review) => {
+        const filteredProduct = goods.filter((good) => {
+            return (selectedMinPrice == 'all' && selectedMaxPrice == 'all') || (good.price >= selectedMinPrice && good.price < selectedMaxPrice)
+        }).filter((good) => {
+            return selectedCategory == 'all' || (good.categories.includes(selectedCategory))
+        }).filter((good) => {
+            return selectedColors.length == 0 || good.informations.colors.some((color) => selectedColors.includes(color))
+        }).filter((good) => {
+            let avgRate = good.reviews.map((review) => {
                 return review.score
             }).reduce((s, num) => {
                 return s + num
-            }) / kala.reviews.length
+            }) / good.reviews.length
 
             return selectedRate == 'all' || (avgRate >= selectedRate && avgRate < selectedRate + 1)
         })
@@ -292,8 +293,8 @@ function Products() {
                                                             const selectedRange = e.target.value
                                                             const max = (selectedRange * average).toFixed(2)
                                                             setSelectedMinPrice(max)
-                                                            const maximumPrice = kalas.map((kala) => {
-                                                                return kala.price
+                                                            const maximumPrice = goods.map((good) => {
+                                                                return good.price
                                                             })
                                                             let mx = Math.max(...maximumPrice)
                                                             setSelectedMaxPrice(mx + 1)
@@ -402,27 +403,7 @@ function Products() {
                         </div>
                     </div>
                     <div className="products-wrapper">
-                        {
-                            selectedProducts.map((kala, index) => (
-                                <div className="product product-left">
-                                    <img key={index} src={process.env.PUBLIC_URL + kala.images[0]} alt="PRODUCT" />
-                                    <div className="favorite">
-                                        <h2>
-                                            <Link to={'/products/' + kala.name.toLowerCase().replaceAll(" ", "-")}>{kala.name}</Link>
-                                        </h2>
-                                        <div className="heart">
-                                            {/* <FaRegHeart className='fa-heart-o' /> */}
-                                            {/* <FaHeart className='.fa-heart' /> */}
-                                        </div>
-                                    </div>
-                                    <div className='product-rateBox'>
-                                        <FaStar className='product-star' color='yellow' />
-                                        {(kala.reviews.map((review) => review.score).reduce((s, num) => (s + num)) / kala.reviews.length).toFixed(1)}
-                                        <span className="product-price">{kala.price + ' $'}</span>
-                                    </div>
-                                </div>
-                            ))
-                        }
+                        <SingleProduct />
                     </div>
                 </div>
             </div >

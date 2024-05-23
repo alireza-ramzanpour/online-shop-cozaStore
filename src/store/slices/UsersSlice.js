@@ -9,6 +9,7 @@ export const usersSlice = createSlice({
             {
                 username: 'ali1234',
                 password: '1234',
+                groups : ["admin"],
                 name: 'ali',
                 family: 'rezaei',
                 cart: [
@@ -21,6 +22,7 @@ export const usersSlice = createSlice({
             {
                 username: 'mehran2222',
                 password: '2222',
+                groups : [ "user"],
                 name: 'mehran',
                 family: 'ahmadi',
                 cart: [
@@ -34,6 +36,7 @@ export const usersSlice = createSlice({
             {
                 username: 'mehdi1111',
                 password: '1111',
+                groups : ["customer" ],
                 name: 'mehdi',
                 family: 'omidi',
                 cart: [
@@ -46,6 +49,7 @@ export const usersSlice = createSlice({
             {
                 username: 'soheil68',
                 password: '6868',
+                groups : ["user", "customer"],
                 name: 'soheil',
                 family: 'modiri',
                 cart: [
@@ -58,6 +62,7 @@ export const usersSlice = createSlice({
             {
                 username: 'reza64',
                 password: '6464',
+                groups : ["admin" , "user" , "customer"],
                 name: 'reza',
                 family: 'alinia',
                 cart: [
@@ -71,6 +76,7 @@ export const usersSlice = createSlice({
         loginUser: {
             username: '',
             password: '',
+            groups: [],
             name: '',
             family: '',
             cart: [

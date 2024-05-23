@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { addProduct, editProduct } from "../../store/slices/ProductsSlice";
+import { addProduct, editProduct } from "../store/slices/ProductsSlice";
 import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
-import { products } from "../../store/slices/ProductsSlice";
+import { products } from "../store/slices/ProductsSlice";
 
 
 

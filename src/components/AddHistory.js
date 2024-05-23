@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { loggedUser } from "../../store/slices/UsersSlice";
+import { loggedUser } from "../store/slices/UsersSlice";
 import { useSelector } from "react-redux";
 
 function AddHistory() {

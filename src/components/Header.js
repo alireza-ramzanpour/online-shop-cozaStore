@@ -1,11 +1,11 @@
 import React from "react";
 import { FaHome, FaSearch, FaSignInAlt, FaCartPlus, FaSignOutAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { loggedUser, logoutUser } from "../../store/slices/UsersSlice";
+import { loggedUser, logoutUser } from "../store/slices/UsersSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { MdAdminPanelSettings } from "react-icons/md";
 
-function Nav() {
+function Header() {
   const loginUser = useSelector(loggedUser)
   const dispatch = useDispatch()
 
@@ -75,4 +75,4 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default Header;

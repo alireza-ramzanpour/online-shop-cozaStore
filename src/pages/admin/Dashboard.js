@@ -23,7 +23,7 @@ function Dashboard() {
     const [categoriesData, setCategoriesData] = useState({
         labels: allCategories,
         datasets: [{
-            label: "The Percentage of Categories",
+            label: "%",
             data: [5, 3, 6],
             backgroundColor: [
                 "rgba(75, 192, 192, 1)",
@@ -100,7 +100,7 @@ function Dashboard() {
         setCategoriesData({
             labels: chartLabels,
             datasets: [{
-                label: "The Percentage of total products by category",
+                label: "%",
                 data: categoryPercent,
                 backgroundColor: [
                     "rgba(75, 192, 192, 1)",

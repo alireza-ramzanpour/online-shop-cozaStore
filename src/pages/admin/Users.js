@@ -38,7 +38,7 @@ function Users() {
             <div className='page-wrapper__box'>
                 <div className='inputWrapper'>
                     <input type="button" className='saveBtn' value='Add' onClick={() => {
-                        navigate('/admin/adduser')
+                        navigate('/components/AddUser')
                     }} />
                 </div>
                 <table className='styled-table'>
@@ -67,7 +67,7 @@ function Users() {
                                             dispatch(editUser({
                                                 username: user.username,
                                             }))
-                                            navigate('/admin/adduser')
+                                            navigate('/components/AddUser')
                                         }} />
                                     </td>
                                     <td>
