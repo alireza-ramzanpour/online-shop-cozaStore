@@ -62,7 +62,7 @@ export const usersSlice = createSlice({
             {
                 username: 'reza64',
                 password: '6464',
-                groups : ["admin" , "user" , "customer"],
+                groups : [ "user" , "customer"],
                 name: 'reza',
                 family: 'alinia',
                 cart: [
